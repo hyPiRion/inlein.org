@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Inlein</title>
+  <meta name="description" content="Inlein: Clojure scripting with dependencies">
+  <meta name="author" content="Jean Niklas L'orange and contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/extras.css">
+  <link rel="stylesheet" href="css/htmlize.css">
+  <link rel="stylesheet" href="css/inlein.css">
+
+  <link href="http://fonts.googleapis.com/css?family=Inconsolata"
+        rel="stylesheet" type="text/css">	
+  <link href="http://fonts.googleapis.com/css?family=Bitter"
+        rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="eight columns offset-by-four">
+        <h1 class="remove-bottom">Inlein</h1>
+        <h6>run Clojure scripts with dependencies</h6>
+        <nav class="offset-by-two columns">
+          <a href="#install">install</a> |
+          <a href="#docs">docs</a> |
+          <a href="https://github.com/hyPiRion/inlein">source</a>
+        </nav>
+      </div>
+    </div>
+    <div class="row"><div class="twelve columns"><hr /></div></div>
+
+    <div class="row">
+      <div class="one-third column">
+        <p id="pitch">Inlein is <strong>the easiest and fastest way to run
+            <a href="http://clojure.org">Clojure</a> scripts</strong>. You only
+            have to inline your dependencies, add in a shebang line, and make
+            the script file executable.</p>
+      </div>
+      <div class="two-thirds column">
+        <pre class="htmlize">#<span class="type">!/usr/bin</span><span class="default">/</span>env inlein
+
+'{<span class="clojure-keyword">:dependencies</span> [[<span class="type">org.clojure</span><span class="default">/</span>clojure <span class="string">"1.8.0"</span>]
+                 [amazonica <span class="string">"0.3.51"</span>]]}
+
+(require '[<span class="type">amazonica.aws.s3</span> <span class="clojure-keyword">:as</span> s3])
+
+(<span class="keyword">def</span> <span class="variable-name">bucket-name</span> (first <span class="builtin">*command-line-args*</span>))
+
+(<span class="keyword">when-not</span> bucket-name
+  (println <span class="string">"Usage:"</span> (<span class="type">System</span><span class="default">/</span><span class="clojure-interop-method">getProperty</span> <span class="string">"$0"</span>) <span class="string">"s3-bucket"</span>)
+  (<span class="type">System</span><span class="default">/</span>exit 1))
+
+<span class="ATTRLIST-8">(</span><span class="keyword">let</span> [objs (<span class="clojure-keyword">:object-summaries</span>
+            (<span class="type">s3</span><span class="default">/</span>list-objects <span class="clojure-keyword">:bucket-name</span> bucket-name))]
+  <span class="ATTRLIST-7">(</span><span class="keyword">doseq</span> <span class="ATTRLIST-6">[</span>{<span class="clojure-keyword">:keys</span> [key size]} objs
+          <span class="clojure-keyword">:when</span> (pos? size)<span class="ATTRLIST-6">]</span>
+    (println key)<span class="ATTRLIST-7">)</span><span class="ATTRLIST-8">)</span>
+        </pre>
+      </div>
+
+
+      <div class="row"><div class="twelve columns"><hr /></div></div>
+
+      <div class="row">
+        <div class="one-third column">
+          <h4 class="offset-by-one">Installing</h4></div>
+      <div class="two-thirds column">
+        <a name="install"></a>
+        <p>If you've installed Leiningen before, the installation steps should
+        be familiar:</p>
+        
+        <ol>
+          <li>Make sure you have a Java JDK <strong>version 7</strong> or later</li>
+          <li>Download the latest version of the <a href="https://github.com/hyPiRion/inlein/releases/latest"><kbd>inlein</kbd>
+              program</a></li>
+          <li>Place it on your <code>$PATH</code> where your shell can find it
+          (eg. <code>~/bin</code>)</li>
+          <li>Set it to be executable (<code>chmod a+x ~/bin/inlein</code>)</li>
+          <li>The first time you run a script (<code>inlein file</code>), inlein
+          will set up and download the necessary files</li>
+        </ol>
+	    </div>
+	  </div>
+
+    <div class="row"><div class="twelve columns"><hr /></div></div>
+
+    <div class="row">
+	    <div class="two-thirds column">
+        <a name="docs"></a>
+        <p>Full documentation on how to use Inlein can be found at
+        the <a href="https://github.com/hyPiRion/inlein/wiki/Getting-Started">Getting
+        Started</a> page on the Inlein wiki. It covers installation, usage,
+          command line options and general tips.</p>
+
+        <p>The documentation does not cover learning Clojure itself, but
+        fortunately is good <a href="http://clojure-doc.org/">Clojure
+        documentation</a> easily available.</p>
+	    </div>
+
+      <div class="one-third column">
+        <h4 class="offset-by-one column">Documentation</h4></div>
+	  </div>
+
+    <div class="row"><div class="twelve columns"><hr /></div></div>
+
+    <div class="row">
+      <div class="ten columns" id="footer">
+        <p>&copy; 2016 Jean Niklas L'orange
+          and <a href="https://github.com/hyPiRion/inlein/graphs/contributors">contributors</a>.
+          Licensed under
+          the <a href="https://github.com/hyPiRion/inlein/blob/master/LICENSE">EPL
+            1.0</a>. See the source
+          for <a href="https://github.com/hyPiRion/inlein.org">this
+            site</a>.</p>
+      </div>
+    </div>
+
+
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

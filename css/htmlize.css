@@ -1,0 +1,24 @@
+.builtin {
+    /* font-lock-builtin-face */
+    color: #6c71c4;
+}
+.clojure-keyword {
+    /* clojure-keyword-face */
+    color: #268bd2;
+}
+.default {
+    /* default */
+    color: #657b83;
+}
+.keyword {
+    /* font-lock-keyword-face */
+    color: #859900;
+}
+.string {
+    /* font-lock-string-face */
+    color: #2aa198;
+}
+.type {
+    /* font-lock-type-face */
+    color: #268bd2;
+}
