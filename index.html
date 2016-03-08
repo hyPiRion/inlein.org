@@ -56,8 +56,8 @@
             the script file executable.</p>
       </div>
       <div class="two-thirds column">
-        <pre class="htmlize">#<span class="type">!/usr/bin</span><span class="default">/</span>env inlein
-
+        <pre class="htmlize"><span class="comment-delimiter">#</span><span class="comment">!/usr/bin/</span><span class="keyword">env</span><span class="comment"> inlein
+</span>
 '{<span class="clojure-keyword">:dependencies</span> [[<span class="type">org.clojure</span><span class="default">/</span>clojure <span class="string">"1.8.0"</span>]
                  [amazonica <span class="string">"0.3.51"</span>]]}
 
@@ -95,8 +95,9 @@
           <li>Place it on your <code>$PATH</code> where your shell can find it
           (eg. <code>~/bin</code>)</li>
           <li>Set it to be executable (<code>chmod a+x ~/bin/inlein</code>)</li>
-          <li>The first time you run a script (<code>inlein file</code>), inlein
-          will set up and download the necessary files</li>
+          <li>The first time you run a script (<code>inlein file</code>
+          or <code>./file</code>), inlein will set up and download the necessary
+          files</li>
         </ol>
 	    </div>
 	  </div>

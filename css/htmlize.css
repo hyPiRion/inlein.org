@@ -22,3 +22,11 @@
     /* font-lock-type-face */
     color: #268bd2;
 }
+.comment {
+    /* font-lock-comment-face */
+    color: #93a1a1;
+}
+.comment-delimiter {
+    /* font-lock-comment-delimiter-face */
+    color: #93a1a1;
+}
